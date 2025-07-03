@@ -32,9 +32,9 @@ public class CreateContactTest extends BaseClass {
 
 		ContactInformationPage cip = new ContactInformationPage(driver);
 		String headerInfo = cip.getActualHeader().getText();
-		
+
 		Assert.assertTrue(headerInfo.contains(lastName));
-		
+
 		String actLastName = cip.getActualLastName().getText();
 		SoftAssert sa = new SoftAssert();
 		sa.assertEquals(actLastName, lastName);
@@ -68,14 +68,10 @@ public class CreateContactTest extends BaseClass {
 		ContactInformationPage cip = new ContactInformationPage(driver);
 		String actualStartDate = cip.getActualStartDate().getText();
 		String actualEndDate = cip.getActualEndDate().getText();
-		
-		SoftAssert sa = new SoftAssert(); 
+
+		SoftAssert sa = new SoftAssert();
 		sa.assertEquals(actualStartDate, startDate);
 		sa.assertEquals(actualEndDate, endDate);
-		
-		
-		
-			
 
 	}
 

@@ -10,6 +10,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
+
 import com.vtiger.crm.generic.databaseutility.DatabaseUtility;
 import com.vtiger.crm.generic.fileutility.ExcelUtility;
 import com.vtiger.crm.generic.fileutility.FileUtility;
@@ -42,8 +44,9 @@ public class BaseClass {
 	//public void configBC(String BROWSER) throws Exception {
 	public void configBC() throws Exception {	
 		System.out.println("====launch browser====");
-	//	String browser = BROWSER;
-		String browser = fLib.getDataFromPropertiesFile("browser");
+		//String browser = BROWSER;
+		//String browser = fLib.getDataFromPropertiesFile("browser");
+		String browser = System.getProperty("browser", fLib.getDataFromPropertiesFile("browser"));
 
 		if (browser.equals("chrome"))
 			driver = new ChromeDriver();
@@ -59,9 +62,13 @@ public class BaseClass {
 	@BeforeMethod(groups = {"smokeTest", "regressionTest"})
 	public void configBM() throws Exception {
 		System.out.println("login");
-		String url = fLib.getDataFromPropertiesFile("url");
-		String username = fLib.getDataFromPropertiesFile("username");
-		String password = fLib.getDataFromPropertiesFile("password");
+		//String url = fLib.getDataFromPropertiesFile("url");
+		//String username = fLib.getDataFromPropertiesFile("username");
+		//String password = fLib.getDataFromPropertiesFile("password");
+		
+		String url = System.getProperty("url",fLib.getDataFromPropertiesFile("url"));
+		String username = System.getProperty("username",fLib.getDataFromPropertiesFile("username"));
+		String password = System.getProperty("password",fLib.getDataFromPropertiesFile("password"));
 		LoginPage lp = new LoginPage(driver);
 		lp.loginToApp(url, username, password);
 	}
